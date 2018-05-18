@@ -33,6 +33,16 @@ exports.getTemplate = function() {
 			'rename': 'extensions/perspective.extensionpoint'
 		}, {
 			'_section': 'Extensions',
+			'location': '/template-application-launchpad/extensions/perspective.extension.template', 
+			'action': 'generate',
+			'rename': 'extensions/perspective.extension'
+		}, {
+			'_section': 'Extensions',
+			'location': '/template-application-launchpad/extensions/perspective.js.template', 
+			'action': 'generate',
+			'rename': 'extensions/perspective.js'
+		}, {
+			'_section': 'Extensions',
 			'location': '/template-application-launchpad/extensions/tiles.extensionpoint.template', 
 			'action': 'generate',
 			'rename': 'extensions/tiles.extensionpoint'
