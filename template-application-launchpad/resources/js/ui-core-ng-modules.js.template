@@ -107,7 +107,7 @@ angular.module('ideUiCore', ['ngResource'])
 		ViewRegistrySvc.factory(factoryName, ViewFactories[factoryName]);
 	});		
 	var get = function(viewExtensionPoint){
-		return $resource('/services/v3/js/{{projectName}}/api/launchpad/views.js').query({'viewExtensionPoint': viewExtensionPoint}).$promise
+		return $resource('/services/v3/js/{{projectName}}/api/launchpad/views.js').query({'extensionPoint': viewExtensionPoint}).$promise
 				.then(function(data){
 					data = data.map(function(v){
 						v.id = v.id || v.name.toLowerCase();
@@ -213,13 +213,13 @@ angular.module('ideUiCore', ['ngResource'])
 			viewExtensionPoint: '@viewExtensionPoint',
 		},
 		link: function(scope, el, attrs){
-//			var views;
-//			if(scope.layoutViews){
-//				views = scope.layoutViews.split(',');
-//			} else {
-//				views =  scope.viewsLayoutModel.views;
-//			}
-//			var eventHandlers = scope.viewsLayoutModel.events;
+			var views;
+			if(scope.layoutViews){
+				views = scope.layoutViews.split(',');
+			} else {
+				views =  scope.viewsLayoutModel.views;
+			}
+			var eventHandlers = scope.viewsLayoutModel.events;
 			
 			viewRegistry.get(scope.viewExtensionPoint).then(function(registry){
 				scope.layoutManager = new LayoutController(registry);
