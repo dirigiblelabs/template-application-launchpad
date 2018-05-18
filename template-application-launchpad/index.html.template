@@ -31,9 +31,6 @@
                
                 <!-- Custom IDE Styles -->
                 <link type="text/css" rel="stylesheet" href="/services/v3/core/theme/ide.css" />
-               
-                <link href="css/landing-page.css" rel="stylesheet">
-               
 </head>
  
 <body ng-app="operations" ng-controller="Controller as c">

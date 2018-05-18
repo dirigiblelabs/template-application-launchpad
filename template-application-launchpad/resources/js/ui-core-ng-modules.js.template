@@ -106,8 +106,8 @@ angular.module('ideUiCore', ['ngResource'])
 	Object.keys(ViewFactories).forEach(function(factoryName){
 		ViewRegistrySvc.factory(factoryName, ViewFactories[factoryName]);
 	});		
-	var get = function(viewExtensionPoint){
-		return $resource('/services/v3/js/{{projectName}}/api/launchpad/views.js').query({'extensionPoint': viewExtensionPoint}).$promise
+	var get = function(viewsExtensionPoint){
+		return $resource('/services/v3/js/{{projectName}}/api/launchpad/views.js').query({'extensionPoint': viewsExtensionPoint}).$promise
 				.then(function(data){
 					data = data.map(function(v){
 						v.id = v.id || v.name.toLowerCase();
@@ -210,7 +210,7 @@ angular.module('ideUiCore', ['ngResource'])
 		restrict: 'AE',
 		scope: {
 			viewsLayoutModel: '=',
-			viewExtensionPoint: '@viewExtensionPoint',
+			viewsExtensionPoint: '@viewsExtensionPoint',
 		},
 		link: function(scope, el, attrs){
 			var views;
@@ -221,15 +221,15 @@ angular.module('ideUiCore', ['ngResource'])
 			}
 			var eventHandlers = scope.viewsLayoutModel.events;
 			
-			viewRegistry.get(scope.viewExtensionPoint).then(function(registry){
+			viewRegistry.get(scope.viewsExtensionPoint).then(function(registry){
 				scope.layoutManager = new LayoutController(registry);
-//				if(eventHandlers){
-//					Object.keys(eventHandlers).forEach(function(evtName){
-//						var handler = eventHandlers[evtName];
-//						if(typeof handler === 'function')
-//							scope.layoutManager.addListener(evtName, handler);
-//					});
-//				}
+				if(eventHandlers){
+					Object.keys(eventHandlers).forEach(function(evtName){
+						var handler = eventHandlers[evtName];
+						if(typeof handler === 'function')
+							scope.layoutManager.addListener(evtName, handler);
+					});
+				}
 				$(window).resize(function(){scope.layoutManager.layout.updateSize()});
 				scope.layoutManager.init(el, views);
 				Layouts.manager = scope.layoutManager;
