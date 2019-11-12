@@ -1,4 +1,4 @@
-# Template V3 - Application Launchpad
+# Template - Application Launchpad
 
 [![Eclipse License](http://img.shields.io/badge/license-Eclipse-brightgreen.svg)](LICENSE)
 [![GitHub contributors](https://img.shields.io/github/contributors/dirigiblelabs/template-v3-application-launchpad.svg)](https://github.com/dirigiblelabs/template-v3-application-launchpad/graphs/contributors)
